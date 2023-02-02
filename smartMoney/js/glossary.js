@@ -4,7 +4,7 @@ let dict = {
     "529 savings plan":"A type of 529 plan that allows you to invest your education savings in various types of investments, including mutual funds. Like a 401(k) or IRA retirement plan, your account could go up or down depending on market performance. This plan, also called an education savings plan, is typically sponsored by a state and may be available from a private investment firm. You also can use this plan to help pay tuition at public, private, or religious schools from kindergarten through 12th grade.",
     "Advertisement":"Posters, signs, television commercials, radio spots, and other media that businesses use to promote products or services.",
     "Annual return":"The profit or loss on an investment over a one-year period.",
-    "APR (Annual Percentage Rate)":"The cost of borrowing money on a yearly basis, expressed as a percentage rate.",
+    "APR":"The cost of borrowing money on a yearly basis, expressed as a percentage rate.",
     "Asset":"An item with economic value, such as stock or real estate.",
     "Associate's degree":"A degree usually awarded for at least two years of full-time academic study beyond high school.",
     "ATM":"Stands for 'automated teller machine,' a machine that lets bank customers perform basic transactions, such as deposits and withdrawals.",
@@ -16,7 +16,7 @@ let dict = {
     "Benefit":"Something that an employer, the government, or an insurance company provides that's often used only for a particular purpose, such as food or medical costs. Also: An advantage; something that is good.",
     "Bill-payment service":"A service you set up with a bank, credit union, prepaid card account, or a business you owe money to that lets you pay bills online or through a mobile app.",
     "Bloom's Taxonomy":"Named for educational psychologist Dr. Benjamin Bloom who, in 1956, led the creation of a framework for classifying educational goals and promoting higher order thinking skills when designing learning activities. His taxonomy allows educators to categorize activities by their level of challenge and complexity. It was revised in 2011 by a group of practitioners and researchers to promote a more dynamic conception of classification.",
-    "Bimonthly (semi-monthly)":"Twice a month.",
+    "Bimonthly":"Twice a month.",
     "Bond":"A type of debt. When you buy a bond, you're lending to the issuer, which may be a government, municipality, or corporation. The issuer promises to pay you a specified rate of interest during the life of the bond and to repay the principal — also known as the bond's face value or par value — when the bond 'matures,' or comes due after a set period.",
     "Borrow":"To receive something on loan with the understanding that you will return it.",
     "Borrower":"A person or organization that borrows something, especially money from a bank or other financial institution.",
@@ -31,7 +31,8 @@ let dict = {
     "Card replacement fee":"A fee your prepaid card provider may charge to replace your card if it is lost, stolen, or damaged.",
     "Career":"A profession that may span your lifetime and includes your education, training, professional memberships, volunteering, and full history of paid work. Can be a synonym for occupation.",
     "Cash":"Paper or coin money.",
-    "Certificate of deposit (CD)":"A savings tool from a bank or credit union that has a fixed maturity date and a fixed interest rate.",
+    "Certificate of deposit":"A savings tool from a bank or credit union that has a fixed maturity date and a fixed interest rate.",
+    "CD":"A savings tool from a bank or credit union that has a fixed maturity date and a fixed interest rate.",
     "Checking account":"An account at a bank (sometimes called a share draft account at a credit union) that allows you to make deposits, pay bills, and make withdrawals.",
     "Claim":"The insured's request for payment due to loss incurred and covered under the policy agreement.",
     "Closed-loop prepaid card":"This type of card can only be used at certain locations. For example, a closed-loop card might be good only at a specific store or group of stores or on your public transportation system.",
@@ -237,12 +238,14 @@ let dict = {
     "Work-study program":"A federal program that provides part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses."
     }
 
+// Just capitalize an input word or phrase
 function capitalize(searchTerm){
     return searchTerm[0].toUpperCase() + searchTerm.substring(1)
 }
 
+// Handler for when a definition is not found.  
 function notFound(searchTerm){
-    document.getElementById("resultsarea").innerHTML = "<h2>Not found: " + searchTerm + "</h2><br/><p>Please check your spelling or try another term.</p>"
+    document.getElementById("resultsarea").innerHTML = "<h2>Not found: " + capitalize(searchTerm) + "</h2><br/><p>Please check your spelling or try another term.</p>"
     document.getElementById("resultsarea").style.visibility = "visible"
 }
 
@@ -254,6 +257,7 @@ function doSearch(){
         document.getElementById("resultsarea").style.visibility = "visible"
         return
     }
+
     //Search our local dictionary first
     for(let k in dict){
         if(k.toLowerCase() == searchTerm.toLowerCase()){
@@ -262,6 +266,7 @@ function doSearch(){
             return
         }
     }
+
     //If that fails, we have the option to search our remote dictionary via an API query
     if(document.getElementById("advancedsearchtoggle").checked){
         advancedSearch()
@@ -279,9 +284,11 @@ function advancedSearch(){
     xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + searchTerm, true)
     xhttp.onload = () => {
         let res = xhttp.response
+        // If this happens, the word is NOT in our online dictionary either. Time to give up. 
         if(res.hasOwnProperty("title")){
             notFound(searchTerm)
         }
+        // Otherwise, we got it! Parse the JSON encoded response and extract required data. 
         else{
             let term = res[0].word
             let def = res[0].meanings[0].definitions[0].definition
