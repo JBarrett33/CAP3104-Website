@@ -157,7 +157,7 @@ let dict = {
     "Paycheck":"A check for your salary or wages made out to you.",
     "Payroll card":"A type of prepaid card you get from your employer that you receive your paycheck on.",
     "Payroll tax":"Taxes taken from your paycheck, including Social Security and Medicare taxes.",
-    "Phishing scam":"When someone tries to get you to give them personal information, such as through an email or text message, often by impersonating a business or government agency. This can be thought of as 'fishing for confidential information'",
+    "Phishing":"When someone tries to get you to give them personal information, such as through an email or text message, often by impersonating a business or government agency. This can be thought of as 'fishing for confidential information'",
     "Policy":"In the insurance context, it is a written contract between the insured and the insurer.",
     "Policyholder":"The individual or firm that acquires and wants protection from the risk and generally in whose name an insurance policy is written. The holder is not necessarily the insured. For instance, life insurance policies might be bought by employers of key employees, or a person may buy and be the holder of a life insurance policy on their spouse. In such cases, the buyer is the policyholder.",
     "Post-secondary education":"Includes all forms of schooling after high school, not just college.",
@@ -200,6 +200,7 @@ let dict = {
     "SMART goals":"Goals that are specific, measurable, attainable, relevant, and timebound.",
     "Social Security":"Provides benefits for retired workers and people with disabilities, as well as the unmarried children, surviving spouses, or former spouses (in certain cases) of both.",
     "Social Security number":"The nine-digit number on a Social Security card, an important piece of identification issued by the federal government that you'll need to get a job and collect government benefits.",
+    "SSN":"The nine-digit number on a Social Security card, an important piece of identification issued by the federal government that you'll need to get a job and collect government benefits.",
     "Spend":"The act of using money to buy goods or services.",
     "Spoofing":"When a caller disguises the information shown on your caller ID to appear as though they are calling as a certain person or from a specific location.",
     "State income tax":"Most states and some local municipalities require their residents to pay a personal income tax. Generally, states use one of two methods to determine income tax: the graduated income tax or the flat rate income tax. Both methods first require you to figure your taxable income.",
@@ -232,26 +233,62 @@ let dict = {
     "Wants":"Upgrades and other things that would be nice to have but aren't necessary for living, income, or protecting what you have.",
     "Warranty":"A manufacturer's warranty is a promise from that company to pay for some repairs or services. A warranty is for a specific period of time, usually a few years.",
     "Wire transfer fraud":"Tricking someone into wiring or transferring money to steal from them. One common example of a wire transfer fraud is the 'grandparent scam.' This is when a scammer posing as a grandchild or a friend of a grandchild calls to say they are in a foreign country, or in some kind of trouble, and need money wired or sent right away.",
-    "Withholding ('pay-as-you-earn' taxes)":"Money that employers withhold from employees' paychecks. This money is deposited for the government and is credited against the employees' tax liability when they file their returns. Employers withhold money for federal income taxes, Social Security and Medicare taxes, and state and local income taxes in some states and localities.",
+    "Withholding":"Money that employers withhold from employees' paychecks. This money is deposited for the government and is credited against the employees' tax liability when they file their returns. Employers withhold money for federal income taxes, Social Security and Medicare taxes, and state and local income taxes in some states and localities.",
     "Work-study program":"A federal program that provides part-time jobs for undergraduate and graduate students with financial need, allowing them to earn money to help pay education expenses."
     }
 
-// Super overkill recursive binary search because why not??
-function searchFor(searchTerm, lower, upper, itr){
-    if(itr > 10){
-        return "Search term '" + searchTerm + "' " + "was not found.";
+function capitalize(searchTerm){
+    return searchTerm[0].toUpperCase() + searchTerm.substring(1)
+}
+
+function notFound(searchTerm){
+    document.getElementById("resultsarea").innerHTML = "<h2>Not found: " + searchTerm + "</h2><br/><p>Please check your spelling or try another term.</p>"
+    document.getElementById("resultsarea").style.visibility = "visible"
+}
+
+// Search for a word in the search term box
+function doSearch(){
+    let searchTerm = document.getElementById("term").value
+    if (searchTerm.length < 2){
+        document.getElementById("resultsarea").innerHTML = "<h2>Search term error.</h2><br/><p>Please enter at least 2 characters.</p>"
+        document.getElementById("resultsarea").style.visibility = "visible"
+        return
     }
-    let mid = Math.floor(((upper + lower) / 2))
-    if(Object.keys(dict)[mid].toLowerCase() == searchTerm.toLowerCase()){
-        return(Object.values(dict)[mid]);
+    //Search our local dictionary first
+    for(let k in dict){
+        if(k.toLowerCase() == searchTerm.toLowerCase()){
+            document.getElementById("resultsarea").innerHTML = "<h2>" + capitalize(k) + "</h2><br/><p>" + dict[k] + "</p>"
+            document.getElementById("resultsarea").style.visibility = "visible"
+            return
+        }
     }
-    else if(Object.keys(dict)[mid].toLowerCase() > searchTerm.toLowerCase()){
-        return searchFor(searchTerm, lower, mid, itr+1)
+    //If that fails, we have the option to search our remote dictionary via an API query
+    if(document.getElementById("advancedsearchtoggle").checked){
+        advancedSearch()
     }
-    else if(Object.keys(dict)[mid].toLowerCase() < searchTerm.toLowerCase()){
-        return searchFor(searchTerm, mid, upper, itr+1)
+    else{
+        notFound(searchTerm)
     }
 }
 
-// console.log(searchFor("loan", 0, Object.keys(dict).length, 0));
+//Query an external dictionary API as a last resort if we can't find our desired term locally. 
+function advancedSearch(){
+    let searchTerm = document.getElementById("term").value
+    let xhttp = new XMLHttpRequest()
+    xhttp.responseType = 'json'
+    xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + searchTerm, true)
+    xhttp.onload = () => {
+        let res = xhttp.response
+        if(res.hasOwnProperty("title")){
+            notFound(searchTerm)
+        }
+        else{
+            let term = res[0].word
+            let def = res[0].meanings[0].definitions[0].definition
+            document.getElementById("resultsarea").innerHTML = "<h2>" + capitalize(searchTerm) + "</h2><br/><p>" + def + "</p>"
+            document.getElementById("resultsarea").style.visibility = "visible"
+        }
+    }
+    xhttp.send(null)
+}
 
