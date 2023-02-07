@@ -18,6 +18,30 @@
         <link href="css/additional.css" rel="stylesheet" />
 
         <script src="./js/glossary.js"></script>
+        <script>
+            // Bind ENTER key to the apporpriate function based on the currently focused element. 
+            document.onkeydown = function(e){
+                e = e || window.event
+                if(e.keyCode == 13){
+                    e.preventDefault();
+                    activeId = document.activeElement.id;
+                    console.log(activeId.substring(0,activeId.indexOf("-")))
+                    // Syntax for ALL inputs must be [fucntionName]-[inputName]
+                    // This allows us to determine which function is currently in focus.
+                    switch(activeId.substring(0,activeId.indexOf("-"))){
+                        case "glossary":
+                            console.log("Doin' a search!");
+                            doSearch();
+                            break;
+                    }
+                }
+                // Might as well let the ESC key exit the current modal. 
+                else if(e.keyCode == 27){
+                    console.log("ESC")
+                    window.location.href="#"+"page-top"
+                }
+            }
+        </script>
     </head>
     <body id="page-top">
 
@@ -79,7 +103,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Cost of Interest</p></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="..." />
+                            <img class="img-fluid" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
                         </div>
                     </div>
                     <!-- Calculator 2-->
@@ -88,7 +112,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Savings Growth</p></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="..." />
+                            <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
                         </div>
                     </div>
                     <!-- Calculator 3-->
@@ -97,7 +121,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Daily Spending Goal</p></div>
                             </div>
-                            <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="..." />
+                            <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
                         </div>
                     </div>
                     <!-- Calculator 4-->
@@ -113,7 +137,7 @@
                     <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Basic Budget Calculator</p></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><p>Basic Budget Generator</p></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
                         </div>
@@ -177,12 +201,12 @@
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Search term input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="term" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                <input class="form-control" id="glossary-searchterm" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                 <label for="name">Enter a term...</label>
                             </div>
                             <button class="btn btn-primary btn-xl" id="submitButton" type="button" onclick="doSearch()">Search!</button>
-                            <input id="advancedsearchtoggle" style="margin-left:10px" type="checkbox">
-                            <label for="advancedsearchtoggle">Search entire dictionary</label>
+                            <!-- <input id="advancedsearchtoggle" style="margin-left:10px" type="checkbox"> -->
+                            <!-- <label for="advancedsearchtoggle">Search entire dictionary</label> -->
                         </form>
                         <div id="resultsarea" style="background-color:antiquewhite; margin-top:20px; border-radius:20px; padding:15px; visibility: hidden;"></div>
                     </div>
@@ -242,7 +266,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 1</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cost of Interest</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -250,7 +274,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
                                     <!-- Calculator Description Modal - Text-->
                                     <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
                                     <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portfolioModal4"></button> -->
@@ -274,7 +298,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 2</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Savings Growth</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -282,7 +306,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
                                     <!-- Calculator Description Modal - Text-->
                                     <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -305,7 +329,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 3</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Daily Spending Goal</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -313,7 +337,7 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
                                     <!-- Calculator Description Modal - Text-->
                                     <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
@@ -336,7 +360,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 4</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Spending Breakdown</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -367,7 +391,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 5</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Basic Budget Generator</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -398,7 +422,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Calculator number 6</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Exchange Rate Calculator</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -464,7 +488,6 @@
         </div>
         <!-- TODO remove this for production! -->
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">Modal Test Button</button>
-
 
 
         <!-- Bootstrap core JS-->

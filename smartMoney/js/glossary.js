@@ -251,8 +251,13 @@ function notFound(searchTerm){
 
 // Search for a word in the search term box
 function doSearch(){
-    let searchTerm = document.getElementById("term").value
-    if (searchTerm.length < 2){
+    let searchTerm = document.getElementById("glossary-searchterm").value
+    if(searchTerm.trim().length ==0){
+        document.getElementById("resultsarea").innerHTML = ""
+        document.getElementById("resultsarea").style.visibility = "hidden"
+        return
+    }
+    else if (searchTerm.length < 2){
         document.getElementById("resultsarea").innerHTML = "<h2>Search term error.</h2><br/><p>Please enter at least 2 characters.</p>"
         document.getElementById("resultsarea").style.visibility = "visible"
         return
@@ -268,17 +273,18 @@ function doSearch(){
     }
 
     //If that fails, we have the option to search our remote dictionary via an API query
-    if(document.getElementById("advancedsearchtoggle").checked){
-        advancedSearch()
-    }
-    else{
-        notFound(searchTerm)
-    }
+    advancedSearch()
+    // if(document.getElementById("advancedsearchtoggle").checked){
+    //     advancedSearch()
+    // }
+    // else{
+    //     notFound(searchTerm)
+    // }
 }
 
 //Query an external dictionary API as a last resort if we can't find our desired term locally. 
 function advancedSearch(){
-    let searchTerm = document.getElementById("term").value
+    let searchTerm = document.getElementById("glossary-searchterm").value
     let xhttp = new XMLHttpRequest()
     xhttp.responseType = 'json'
     xhttp.open("GET", "https://api.dictionaryapi.dev/api/v2/entries/en/" + searchTerm, true)
