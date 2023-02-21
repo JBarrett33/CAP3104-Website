@@ -53,64 +53,16 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-function updatePieChart(){
-    taxRate = document.getElementById("salestax").value / 100;
-    interestRate = document.getElementById("interestrate").value / 100;
-    price = document.getElementById("itemcost").value
-    monthlyPayment = document.getElementById("monthlypayment").value
-
-    priceWithTax = price * (1 + taxRate);
-    taxTotal = priceWithTax - price;
-
-    periodicRate = interestRate / 12
-
-    remaining = priceWithTax
-    interestPaid = 0
-    do{
-        interestPaid += remaining * (periodicRate)
-        remaining = remaining - monthlyPayment
-        console.log(interestPaid)
-    }while (remaining - monthlyPayment > 0);
-    interestPaid += remaining * (periodicRate)
-
-    totalPaid = priceWithTax + interestPaid;
-    taxPortion = taxTotal / totalPaid;
-    purchasePortion = price / totalPaid;
-    interestPortion = interestPaid / totalPaid;
-
-    
-
-    var canvas = document.getElementById("can")
-    var ctx = canvas.getContext("2d")
-    var lastend = 0;
-    var data = [360 * taxPortion, 360*purchasePortion, 360 * interestPortion];
-    var myTotal = 0;
-    var myColor = ['orange', 'green','red'];
-
-    for(var e = 0; e < data.length; e++)
-    {
-        myTotal += data[e];
-    }
-    var off = 10
-    var w = (canvas.width - off) / 2
-    var h = (canvas.height - off) / 2
-    for (var i = 0; i < data.length; i++) {
-    ctx.fillStyle = myColor[i];
-    ctx.strokeStyle ='white';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(w,h);
-    var len =  (data[i]/myTotal) * 2 * Math.PI
-    var r = h - off / 2
-    ctx.arc(w , h, r, lastend,lastend + len,false);
-    ctx.lineTo(w,h);
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle ='white';
-    ctx.font = "20px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    var mid = lastend + len / 2
-    lastend += Math.PI*2*(data[i]/myTotal);
-    }
+function formatAsMoney(amount){
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+      });
+      return formatter.format(amount)
 }
+
+

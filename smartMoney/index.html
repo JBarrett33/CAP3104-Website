@@ -18,6 +18,8 @@
         <link href="css/additional.css" rel="stylesheet" />
 
         <script src="./js/glossary.js"></script>
+        <script src="./js/interestCost.js"></script>
+
         <script>
             // Bind ENTER key to the apporpriate function based on the currently focused element. 
             document.onkeydown = function(e){
@@ -32,6 +34,10 @@
                         case "glossary":
                             console.log("Doin' a search!");
                             doSearch();
+                            break;
+                        case "interest":
+                            console.log("Calculatin' interest")
+                            updateInterest();
                             break;
                     }
                 }
@@ -276,9 +282,12 @@
                                     <!-- Calculator Description Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
                                     <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
+                                    <p class="mb-4">Understanding how much more you pay when using a credit card for a purchase can be difficult. 
+                                        The cost of interest calculator will show you how much you'll pay in total based on your purchase amount, your interest rate (APR), your monthly payment, and applicable sales tax!
+                                        You can also check how many months it will take you to pay off that purchase.
+                                    </p>
                                     <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portfolioModal4"></button> -->
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">
                                         Let's go!
                                     </button>
                                 </div>
@@ -454,30 +463,36 @@
                     <div class="modal-body text-center pb-5">
                         <div class="container-fluid">
                             <div class="row justify-content-center">
+                                <div id="tablearea" class="col-lg-12">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Item Price</th>
+                                            <th>Sales Tax</th>
+                                            <th>Interest Charged</th>
+                                            <th>Months to Pay Off</th>
+                                            <th>TOTAL COST</th>
+                                        </tr>
+                                        <tr>
+                                            <td id="interest-table-itemprice"></td>
+                                            <td id="interest-table-salestax"></td>
+                                            <td id="interest-table-interest"></td>
+                                            <td id="interest-table-months"></td>
+                                            <td id="interest-table-total"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                                 <div class="col-lg-6">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <!-- <h1 style="color:#1abc9c; text-align: right;">$0.00</h1>
-                                    <h1 style="color:red; text-align: right;">+ $0.00</h1>
-                                    <h1 style="color:yellowgreen; text-align: right;"> = $0.00</h1> -->
-                                    <!-- <div class="pie" style="--p:60;--b:10px;--c:purple;">60%</div> -->
-                                    <canvas id="can" width="300" height="300"></canvas>
-                                </div>
-                                <div class="col-lg-2">
-                                    <h1>$0.00</h1>
-                                    <h1>$0.00</h1>
-                                    <h1>$0.00</h1>
-                                </div>
-                                <div class="col-lg-4">
                                     <form>
-                                        <label for="itemcost">Item Price</label>
-                                        <input class="form-control" id="itemcost" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
+                                        <label for="itemcost">Original Price</label>
+                                        <input class="form-control" id="interest-itemcost" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
                                         <label for="salestax">Sales Tax %</label>
-                                        <input class="form-control" id="salestax" type="number" min="0.0" max="100.0" step="0.1" placeholder="0.0" />
+                                        <input class="form-control" id="interest-salestax" type="number" min="0.0" max="100.0" step="0.1" placeholder="0.0" />
                                         <label for="interestrate">Credit Card Interest Rate (APR) %</label>
-                                        <input class="form-control" id="interestrate" type="number" min="0.00" max="100.00" step="0.01" placeholder="0.00" />
+                                        <input class="form-control" id="interest-interestrate" type="number" min="0.00" max="100.00" step="0.01" placeholder="0.00" />
                                         <label for="monthlypayment">Amount paid per month</label>
-                                        <input class="form-control" id="monthlypayment" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
-                                        <button onclick="updatePieChart(250, 100, 0)" type="button">Update chart!</button>
+                                        <input class="form-control" id="interest-monthlypayment" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
+                                        <br/>
+                                        <button class="btn btn-primary" onclick="updateInterest(250, 100, 0)" type="button">Update!</button>
                                     </form>
                                 </div>
                             </div>
