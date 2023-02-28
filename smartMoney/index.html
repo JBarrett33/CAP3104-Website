@@ -19,6 +19,7 @@
 
         <script src="./js/glossary.js"></script>
         <script src="./js/interestCost.js"></script>
+        <script src="./js/exchangeRate.js"></script>
 
         <script>
             // Bind ENTER key to the apporpriate function based on the currently focused element. 
@@ -38,6 +39,10 @@
                         case "interest":
                             console.log("Calculatin' interest")
                             updateInterest();
+                            break;
+                        case "exchangerate":
+                            console.log("Converting currency")
+                            getExchangeValue();
                             break;
                     }
                 }
@@ -105,12 +110,13 @@
                 <div class="row justify-content-center">
                     <!-- Calculator 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Cost of Interest</p></div>
                             </div>
                             <img class="img-fluid" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Understanding how much more you pay when using a credit card for a purchase can be difficult. The cost of interest calculator will show you how much you'll pay in total based on your purchase amount, your interest rate (APR), your monthly payment, and applicable sales tax!</p>
                     </div>
                     <!-- Calculator 2-->
                     <div class="col-md-6 col-lg-4 mb-5">
@@ -120,6 +126,7 @@
                             </div>
                             <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                     <!-- Calculator 3-->
                     <div class="col-md-6 col-lg-4 mb-5">
@@ -129,6 +136,7 @@
                             </div>
                             <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
                     </div>
                     <!-- Calculator 4-->
                     <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
@@ -138,6 +146,7 @@
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                     </div>
                     <!-- Calculator 5-->
                     <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
@@ -147,15 +156,17 @@
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
                     </div>
                     <!-- Calculator 6-->
                     <div class="col-md-6 col-lg-4">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#exchangeratecalculator">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><p>Exchange Rate Calculator</p></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." />
                         </div>
+                        <p style="text-align: center; padding:5px">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                     </div>
                 </div>
             </div>
@@ -260,43 +271,6 @@
             <div class="container"><small>Copyright &copy; SmartMoney 2022</small></div>
         </div>
 
-
-        <!-- Calculator Description Modals-->
-        <!-- Calculator Description Modal 1-->
-        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cost of Interest</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Understanding how much more you pay when using a credit card for a purchase can be difficult. 
-                                        The cost of interest calculator will show you how much you'll pay in total based on your purchase amount, your interest rate (APR), your monthly payment, and applicable sales tax!
-                                        You can also check how many months it will take you to pay off that purchase.
-                                    </p>
-                                    <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portfolioModal4"></button> -->
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">
-                                        Let's go!
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Calculator Description Modal 2-->
         <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -421,40 +395,10 @@
                 </div>
             </div>
         </div>
-        <!-- Calculator Description Modal 6-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Exchange Rate Calculator</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        Let's go!
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <!-- Calculator Modals -->
+
         <!-- Credit card total cost calculator modal -->
         <div class="portfolio-modal modal fade" id="creditcostcalculator" tabindex="-1" aria-labelledby="creditcostcalculator" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -463,6 +407,13 @@
                     <div class="modal-body text-center pb-5">
                         <div class="container-fluid">
                             <div class="row justify-content-center">
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cost of Interest</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom" style="padding-bottom: 20px">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
                                 <div id="tablearea" class="col-lg-12">
                                     <table class="table">
                                         <tr>
@@ -501,8 +452,49 @@
                 </div>
             </div>
         </div>
+
+        <!-- Exchange Rate Modal -->
+        <div class="portfolio-modal modal fade" id="exchangeratecalculator" tabindex="-1" aria-labelledby="exchangeratecalculator" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Exchange Rate Calculator</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom" style="padding-bottom: 20px">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div> 
+                                    <div>
+                                        <!-- <input type="text" class="form-control" placeholder="Start"/> -->
+                                        <select name="fromcurrency" id="exchangerate-fromCurrency" style="width:20%" onchange="updateButton()"></select>
+                                        <button id="exchangerate-btn-swap" type="button" style="appearance:none; border:none; background-color: inherit;" onclick="swapCurrencies()"><img src="assets/img/swap_arrow.svg" width="40px" style="padding:5px"></button>
+                                        <!-- <input type="text" class="form-control" placeholder="End"/> -->
+                                        <select name="tocurrency" id="exchangerate-toCurrency" style="width:20%" onchange="updateButton()"></select>
+                                    </div> 
+                                    <div>
+                                        <input type="number" id="exchangerate-fromamount" style="width:20%">
+                                        <button id="exchangerate-btn-arrowsubmit" type="button" style="appearance:none; border:none; background-color: inherit;" onclick="getExchangeValue()"><img src="assets/img/right-arrow.svg" width="40px" style="padding:8px; margin-left:5px; margin-right:5px"></button>
+                                        <input type="number" id="exchangerate-toamount" style="width:20%" disabled="true">
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary" id="exchangerate-btn-submit" style="margin-top:30px; width:200px" onclick="getExchangeValue()">Convert!</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- TODO remove this for production! -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">Modal Test Button</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exchangeratecalculator">Modal Test Button</button>
+        <button class="btn btn-primary" onclick="getExchangeValue()">JS Test Button</button>
 
 
         <!-- Bootstrap core JS-->
