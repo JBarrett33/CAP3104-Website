@@ -6,7 +6,7 @@ let currencies = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG",
     "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SLL", "SOS", "SRD", 
     "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TVD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XDR", "XOF", "XPF", "YER", "ZAR", "ZMW", "ZWL"]
 
-function validate(){
+function validateExchangeRate(){
     return document.getElementById("exchangerate-fromamount").value >= 0 && document.getElementById("exchangerate-fromamount").value != "";
 }
 
@@ -14,7 +14,7 @@ function getExchangeValue(){
     from = document.getElementById("exchangerate-fromCurrency").value
     to = document.getElementById("exchangerate-toCurrency").value
 
-    if(!validate()){
+    if(!validateExchangeRate()){
         window.alert("Input error! Please check your values.")
         return
     }

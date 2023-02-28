@@ -1,4 +1,4 @@
-function validate(){
+function validateInterestCost(){
     let isPopulated = !(document.getElementById("interest-salestax").value == "" || 
         document.getElementById("interest-interestrate").value == "" || 
         document.getElementById("interest-itemcost").value == "" || 
@@ -13,7 +13,7 @@ function validate(){
 }
 
 function updateInterest(){
-    if(!validate()){
+    if(!validateInterestCost()){
         document.getElementById("interest-table-itemprice").innerHTML = "";
         document.getElementById("interest-table-interest").innerHTML = "";
         document.getElementById("interest-table-salestax").innerHTML = "";
