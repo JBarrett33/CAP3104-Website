@@ -40,6 +40,10 @@ function updateInterest(){
         remaining = remaining - monthlyPayment
         console.log(interestPaid)
         months++
+        if(months > 1000){
+            window.alert("Please enter a higher monthly payment!");
+            return;
+        }
     };
     interestPaid += remaining * (periodicRate)
     months++
