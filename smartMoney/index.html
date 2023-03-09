@@ -20,6 +20,7 @@
         <script src="./js/glossary.js"></script>
         <script src="./js/interestCost.js"></script>
         <script src="./js/exchangeRate.js"></script>
+        <script src="./js/loanPayment.js"></script>
 
         <script>
             // Bind ENTER key to the apporpriate function based on the currently focused element. 
@@ -66,7 +67,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Calculators</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#calculators">Calculators</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#glossary">Glossary</a></li>
                         <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li> -->
@@ -96,7 +97,7 @@
 
 
         <!-- Calculator Section-->
-        <section class="page-section portfolio" id="portfolio">
+        <section class="page-section portfolio" id="calculators">
             <div class="container">
                 <!-- Calculator Section Heading-->
                 <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Our Calculators</h2>
@@ -130,9 +131,9 @@
                     </div>
                     <!-- Calculator 3-->
                     <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#loanpaymentcalculator">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Daily Spending Goal</p></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><p>Loan Payment Calculator</p></div>
                             </div>
                             <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
                         </div>
@@ -152,7 +153,7 @@
                     <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Basic Budget Generator</p></div>
+                                <div class="portfolio-item-caption-content text-center text-white"><p>Daily Spending Goal</p></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
                         </div>
@@ -302,37 +303,7 @@
                 </div>
             </div>
         </div>
-        <!-- Calculator Description Modal 3-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Daily Spending Goal</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        Let's go!
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Calculator Description Modal 4-->
         <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -490,10 +461,59 @@
             </div>
         </div>
 
+        <!-- Exchange Rate Modal -->
+        <div class="portfolio-modal modal fade" id="loanpaymentcalculator" tabindex="-1" aria-labelledby="loanpaymentcalculator" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Loan Payment Calculator</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom" style="padding-bottom: 20px">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div> 
+
+                                    <div class="col-sm-12" id="loanpaymentcalculator-results">
+
+                                    </div>
+
+
+                                   <div class="col-sm-12">
+                                        <form style="width: 90%; text-align: center; margin:auto">
+                                            <div class="form-group" style="padding:10px">
+                                                <label for="loanpaymentcalculator-amount" style="width:150px;">Amount ($):</label>
+                                                <input id="loanpaymentcalculator-amount" type="number" onchange="Calculate()">
+                                            </div>
+                                            
+                                            <div class="form-group" style="padding:10px">
+                                                <label for="loanpaymentcalculator-rate" style="width:150px">Interest Rate:</label>
+                                                <input id="loanpaymentcalculator-rate" type="number" onchange="Calculate()">
+                                            </div>
+                                            
+                                            <div class="form-group" style="padding:10px">
+                                                <label for="loanpaymentcalculator-months" style="width:150px">Loan Term (Months):</label>
+                                                <input id="loanpaymentcalculator-months" type="number" onchange="Calculate()">
+                                            </div>                                          
+                                        </form>
+                                        <div>
+                                            <button class="btn btn-primary" id="exchangerate-btn-submit" style="margin-top:30px; width:200px" onclick="Calculate()">Get Monthly Payment</button>
+                                        </div>
+                                   </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 
         <!-- TODO remove this for production! -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exchangeratecalculator">Modal Test Button</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loanpaymentcalculator">Modal Test Button</button>
         <button class="btn btn-primary" onclick="getExchangeValue()">JS Test Button</button>
 
 
