@@ -1,301 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>SmartMoney - Home</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <link href="css/additional.css" rel="stylesheet" />
 
-        <script src="./js/glossary.js"></script>
-        <script src="./js/interestCost.js"></script>
-        <script src="./js/exchangeRate.js"></script>
-        <script src="./js/loanPayment.js"></script>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>SmartMoney - Home</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional.css" rel="stylesheet" />
 
-        <script>
-            // Bind ENTER key to the apporpriate function based on the currently focused element. 
-            document.onkeydown = function(e){
-                e = e || window.event
-                if(e.keyCode == 13){
-                    e.preventDefault();
-                    activeId = document.activeElement.id;
-                    console.log(activeId.substring(0,activeId.indexOf("-")))
-                    // Syntax for ALL inputs must be [fucntionName]-[inputName]
-                    // This allows us to determine which function is currently in focus.
-                    switch(activeId.substring(0,activeId.indexOf("-"))){
-                        case "glossary":
-                            console.log("Doin' a search!");
-                            doSearch();
-                            break;
-                        case "interest":
-                            console.log("Calculatin' interest")
-                            updateInterest();
-                            break;
-                        case "exchangerate":
-                            console.log("Converting currency")
-                            getExchangeValue();
-                            break;
-                    }
-                }
-                // Might as well let the ESC key exit the current modal. 
-                else if(e.keyCode == 27){
-                    console.log("ESC")
-                    window.location.href="#"+"page-top"
+    <script src="./js/glossary.js"></script>
+    <script src="./js/interestCost.js"></script>
+    <script src="./js/exchangeRate.js"></script>
+    <script src="./js/loanPayment.js"></script>
+
+    <script>
+        // Bind ENTER key to the apporpriate function based on the currently focused element. 
+        document.onkeydown = function (e) {
+            e = e || window.event
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                activeId = document.activeElement.id;
+                console.log(activeId.substring(0, activeId.indexOf("-")))
+                // Syntax for ALL inputs must be [fucntionName]-[inputName]
+                // This allows us to determine which function is currently in focus.
+                switch (activeId.substring(0, activeId.indexOf("-"))) {
+                    case "glossary":
+                        console.log("Doin' a search!");
+                        doSearch();
+                        break;
+                    case "interest":
+                        console.log("Calculatin' interest")
+                        updateInterest();
+                        break;
+                    case "exchangerate":
+                        console.log("Converting currency")
+                        getExchangeValue();
+                        break;
                 }
             }
-        </script>
-    </head>
-    <body id="page-top">
+            // Might as well let the ESC key exit the current modal. 
+            else if (e.keyCode == 27) {
+                console.log("ESC")
+                window.location.href = "#" + "page-top"
+            }
+        }
+    </script>
+</head>
 
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#page-top">SmartMoney</a>
-                <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#calculators">Calculators</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#glossary">Glossary</a></li>
-                        <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li> -->
-                    </ul>
+<body id="page-top">
+
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top">SmartMoney</a>
+            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="#calculators">Calculators</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="#about">About</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="#glossary">Glossary</a></li>
+                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="assets/img/Money.svg" alt="..." />
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Welcome to SmartMoney</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><img src="assets/img/dollarSign.svg" width="25px"></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Finance Made Simple</p>
+        </div>
+    </header>
+
+
+    <!-- Calculator Section-->
+    <section class="page-section portfolio" id="calculators">
+        <div class="container">
+            <!-- Calculator Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Our Calculators</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><img src="assets/img/calculator.svg" width="35px"></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Calculator Grid Items-->
+            <div class="row justify-content-center">
+                <!-- Calculator 1-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Cost of Interest</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Understanding how much more you pay when using a credit
+                        card for a purchase can be difficult. The cost of interest calculator will show you how much
+                        you'll pay in total based on your purchase amount, your interest rate (APR), your monthly
+                        payment, and applicable sales tax!</p>
+                </div>
+                <!-- Calculator 2-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Savings Growth</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <!-- Calculator 3-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#loanpaymentcalculator">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Loan Payment Calculator</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Duis aute irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+                <!-- Calculator 4-->
+                <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#monthlyspendingcalculator">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Monthly Budgeting Calculator</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
+                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
+                        illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+                <!-- Calculator 5-->
+                <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Daily Spending Goal</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+                        aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+                        nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                        velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam
+                        quaerat voluptatem.</p>
+                </div>
+                <!-- Calculator 6-->
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#exchangeratecalculator">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>Exchange Rate Calculator</p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." />
+                    </div>
+                    <p style="text-align: center; padding:5px">Ut enim ad minima veniam, quis nostrum exercitationem
+                        ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel
+                        eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel
+                        illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                 </div>
             </div>
-        </nav>
+        </div>
+    </section>
 
 
-        <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center">
-            <div class="container d-flex align-items-center flex-column">
-                <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="assets/img/Money.svg" alt="..." />
-                <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">Welcome to SmartMoney</h1>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><img src="assets/img/dollarSign.svg" width="25px"></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Finance Made Simple</p>
+    <!-- About Section-->
+    <section class="page-section bg-primary text-white mb-0" id="about">
+        <div class="container">
+            <!-- About Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-white">About Us</h2>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
             </div>
-        </header>
-
-
-        <!-- Calculator Section-->
-        <section class="page-section portfolio" id="calculators">
-            <div class="container">
-                <!-- Calculator Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Our Calculators</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><img src="assets/img/calculator.svg" width="35px"></div>
-                    <div class="divider-custom-line"></div>
+            <!-- About Section Content-->
+            <div class="row">
+                <div class="col-lg-4 ms-auto">
+                    <p class="lead">This is where we should put a creative blurb about what this site is and what
+                        services we will provide to our users. Maybe someone else can write this. In the meantime here
+                        is a placeholder! Here at SmartMoney, we aim to address a major problem present in financial
+                        sites all over the internet: <span style="text-decoration:underline">they're not good.</span>
+                    </p>
                 </div>
-                <!-- Calculator Grid Items-->
-                <div class="row justify-content-center">
-                    <!-- Calculator 1-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#creditcostcalculator">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Cost of Interest</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/calc_thumbs/cost_of_interest.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Understanding how much more you pay when using a credit card for a purchase can be difficult. The cost of interest calculator will show you how much you'll pay in total based on your purchase amount, your interest rate (APR), your monthly payment, and applicable sales tax!</p>
-                    </div>
-                    <!-- Calculator 2-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Savings Growth</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                    <!-- Calculator 3-->
-                    <div class="col-md-6 col-lg-4 mb-5">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#loanpaymentcalculator">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Loan Payment Calculator</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    </div>
-                    <!-- Calculator 4-->
-                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Monthly Spending Breakdown</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    </div>
-                    <!-- Calculator 5-->
-                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Daily Spending Goal</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    </div>
-                    <!-- Calculator 6-->
-                    <div class="col-md-6 col-lg-4">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#exchangeratecalculator">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><p>Exchange Rate Calculator</p></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." />
-                        </div>
-                        <p style="text-align: center; padding:5px">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                    </div>
+                <div class="col-lg-4 me-auto">
+                    <p class="lead">Sit back and relax because we've cut out the ads, trackers, popups, overcomplicated
+                        financial jargon, and terrible aesthetic decisions to bring you a finance site that is as easy
+                        to look at as it is to use.</p>
                 </div>
             </div>
-        </section>
-
-
-        <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
-            <div class="container">
-                <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">About Us</h2>
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- About Section Content-->
-                <div class="row">
-                    <div class="col-lg-4 ms-auto"><p class="lead">This is where we should put a creative blurb about what this site is and what services we will provide to our users. Maybe someone else can write this. In the meantime here is a placeholder! Here at SmartMoney, we aim to address a major problem present in financial sites all over the internet: <span style="text-decoration:underline">they're not good.</span></p></div>
-                    <div class="col-lg-4 me-auto"><p class="lead">Sit back and relax because we've cut out the ads, trackers, popups, overcomplicated financial jargon, and terrible aesthetic decisions to bring you a finance site that is as easy to look at as it is to use.</p></div>
-                </div>
-                <!-- About Section Button-->
-                <!-- <div class="text-center mt-4">
+            <!-- About Section Button-->
+            <!-- <div class="text-center mt-4">
                     <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
                         <i class="fas fa-download me-2"></i>
                         Free Download!
                     </a>
                 </div> -->
-            </div>
-        </section>
-
-
-        <!-- Glossary Section-->
-        <section class="page-section" id="glossary">
-            <div class="container">
-                <!-- Contact Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Finance Glossary</h2>
-                <h4 style="text-align:center; font-style: italic; padding-top:10px">Finance terms can be confusing! Search our glossary and see if we can help.</h4>
-                <!-- Icon Divider-->
-                <div class="divider-custom">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><img src="assets/img/glossary.svg" width="40px"></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Glossary Section Form-->
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-xl-7">
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Search term input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="glossary-searchterm" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Enter a term...</label>
-                            </div>
-                            <button class="btn btn-primary btn-xl" id="submitButton" type="button" onclick="doSearch()">Search!</button>
-                            <!-- <input id="advancedsearchtoggle" style="margin-left:10px" type="checkbox"> -->
-                            <!-- <label for="advancedsearchtoggle">Search entire dictionary</label> -->
-                        </form>
-                        <div id="resultsarea" style="background-color:antiquewhite; margin-top:20px; border-radius:20px; padding:15px; visibility: hidden;"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Footer-->
-        <footer class="footer text-center">
-            <div class="container">
-                <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
-                        <p class="lead mb-0">
-                            2215 John Daniel Drive
-                            <br />
-                            Clark, MO 65243
-                        </p>
-                    </div>
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Meet Our Team</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!">JB</a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!">TJ</a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!">LRS</a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!">HL</a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!">AU</a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">Our Mission Statement</h4>
-                        <p class="lead mb-0">
-                            Here at SmartMoney, we want to blah blah blah something something something go knights charge on.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-
-        <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; SmartMoney 2022</small></div>
         </div>
+    </section>
 
-        <!-- Calculator Description Modal 2-->
-        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Savings Growth</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+
+    <!-- Glossary Section-->
+    <section class="page-section" id="glossary">
+        <div class="container">
+            <!-- Contact Section Heading-->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Finance Glossary</h2>
+            <h4 style="text-align:center; font-style: italic; padding-top:10px">Finance terms can be confusing! Search
+                our glossary and see if we can help.</h4>
+            <!-- Icon Divider-->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><img src="assets/img/glossary.svg" width="40px"></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Glossary Section Form-->
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        <!-- Search term input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="glossary-searchterm" type="text"
+                                placeholder="Enter your name..." data-sb-validations="required" />
+                            <label for="name">Enter a term...</label>
+                        </div>
+                        <button class="btn btn-primary btn-xl" id="submitButton" type="button"
+                            onclick="doSearch()">Search!</button>
+                        <!-- <input id="advancedsearchtoggle" style="margin-left:10px" type="checkbox"> -->
+                        <!-- <label for="advancedsearchtoggle">Search entire dictionary</label> -->
+                    </form>
+                    <div id="resultsarea"
+                        style="background-color:antiquewhite; margin-top:20px; border-radius:20px; padding:15px; visibility: hidden;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <!-- Footer Location-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Location</h4>
+                    <p class="lead mb-0">
+                        2215 John Daniel Drive
+                        <br />
+                        Clark, MO 65243
+                    </p>
+                </div>
+                <!-- Footer Social Icons-->
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Meet Our Team</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">JB</a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">TJ</a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">LRS</a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">HL</a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">AU</a>
+                </div>
+                <!-- Footer About Text-->
+                <div class="col-lg-4">
+                    <h4 class="text-uppercase mb-4">Our Mission Statement</h4>
+                    <p class="lead mb-0">
+                        Here at SmartMoney, we want to blah blah blah something something something go knights charge
+                        on.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; SmartMoney 2022</small></div>
+    </div>
+
+    <!-- Calculator Description Modal 2-->
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Calculator Description Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Savings Growth</h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Calculator Description Modal - Image-->
+                                <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/savings_growth.png"
+                                    alt="..." />
+                                <!-- Calculator Description Modal - Text-->
+                                <p class="mb-4">Let's go ahead and put a tip here about whatever this particular
+                                    function will do! It can just be a brief description of what you need to put in and
+                                    why whatever we're calculating is important. Then, the button below will open the
+                                    calculator!</p>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">
+                                    Let's go!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Description Modal 4-->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Calculator Description Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Spending
+                                    Breakdown</h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Calculator Description Modal - Image-->
+                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
+                                <!-- Calculator Description Modal - Text-->
+                                <p class="mb-4">Let's go ahead and put a tip here about whatever this particular
+                                    function will do! It can just be a brief description of what you need to put in and
+                                    why whatever we're calculating is important. Then, the button below will open the
+                                    calculator!</p>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">
+                                    Let's go!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Calculator Description Modal 5-->
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <!-- Calculator Description Modal - Title-->
+                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Basic Budget
+                                    Generator</h2>
+                                <!-- Icon Divider-->
+                                <div class="divider-custom">
+                                    <div class="divider-custom-line"></div>
+                                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                    <div class="divider-custom-line"></div>
+                                </div>
+                                <!-- Calculator Description Modal - Image-->
+                                <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
+                                <!-- Calculator Description Modal - Text-->
+                                <p class="mb-4">Let's go ahead and put a tip here about whatever this particular
+                                    function will do! It can just be a brief description of what you need to put in and
+                                    why whatever we're calculating is important. Then, the button below will open the
+                                    calculator!</p>
+                                <button class="btn btn-primary" data-bs-dismiss="modal">
+                                    Let's go!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Calculator Modals -->
+
+    <!-- Credit card total cost calculator modal -->
+    <div class="portfolio-modal modal fade" id="creditcostcalculator" tabindex="-1"
+        aria-labelledby="creditcostcalculator" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cost of Interest</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <div id="tablearea" class="col-lg-12">
+                                <table class="table">
+                                    <tr>
+                                        <th>Item Price</th>
+                                        <th>Sales Tax</th>
+                                        <th>Interest Charged</th>
+                                        <th>Months to Pay Off</th>
+                                        <th>TOTAL COST</th>
+                                    </tr>
+                                    <tr>
+                                        <td id="interest-table-itemprice"></td>
+                                        <td id="interest-table-salestax"></td>
+                                        <td id="interest-table-interest"></td>
+                                        <td id="interest-table-months"></td>
+                                        <td id="interest-table-total"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-lg-6">
+                                <form>
+                                    <label for="itemcost">Original Price</label>
+                                    <input class="form-control" id="interest-itemcost" type="number" min="0.00"
+                                        max="1000000.00" step="0.01" placeholder="0.00" />
+                                    <label for="salestax">Sales Tax %</label>
+                                    <input class="form-control" id="interest-salestax" type="number" min="0.0"
+                                        max="100.0" step="0.1" placeholder="0.0" />
+                                    <label for="interestrate">Credit Card Interest Rate (APR) %</label>
+                                    <input class="form-control" id="interest-interestrate" type="number" min="0.00"
+                                        max="100.00" step="0.01" placeholder="0.00" />
+                                    <label for="monthlypayment">Amount paid per month</label>
+                                    <input class="form-control" id="interest-monthlypayment" type="number" min="0.00"
+                                        max="1000000.00" step="0.01" placeholder="0.00" />
+                                    <br />
+                                    <button class="btn btn-primary" onclick="updateInterest(250, 100, 0)"
+                                        type="button">Update!</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exchange Rate Modal -->
+    <div class="portfolio-modal modal fade" id="exchangeratecalculator" tabindex="-1"
+        aria-labelledby="exchangeratecalculator" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Exchange Rate
+                                Calculator</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <div>
+                                <!-- <input type="text" class="form-control" placeholder="Start"/> -->
+                                <select name="fromcurrency" id="exchangerate-fromCurrency" style="width:20%"
+                                    onchange="updateButton()"></select>
+                                <button id="exchangerate-btn-swap" type="button"
+                                    style="appearance:none; border:none; background-color: inherit;"
+                                    onclick="swapCurrencies()"><img src="assets/img/swap_arrow.svg" width="40px"
+                                        style="padding:5px"></button>
+                                <!-- <input type="text" class="form-control" placeholder="End"/> -->
+                                <select name="tocurrency" id="exchangerate-toCurrency" style="width:20%"
+                                    onchange="updateButton()"></select>
+                            </div>
+                            <div>
+                                <input type="number" id="exchangerate-fromamount" style="width:20%">
+                                <button id="exchangerate-btn-arrowsubmit" type="button"
+                                    style="appearance:none; border:none; background-color: inherit;"
+                                    onclick="getExchangeValue()"><img src="assets/img/right-arrow.svg" width="40px"
+                                        style="padding:8px; margin-left:5px; margin-right:5px"></button>
+                                <input type="number" id="exchangerate-toamount" style="width:20%" disabled="true">
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" id="exchangerate-btn-submit"
+                                    style="margin-top:30px; width:200px" onclick="getExchangeValue()">Convert!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loan Payment Modal -->
+    <div class="portfolio-modal modal fade" id="loanpaymentcalculator" tabindex="-1"
+        aria-labelledby="loanpaymentcalculator" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Loan Payment
+                                Calculator</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+
+                            <div class="col-sm-12" id="loanpaymentcalculator-results">
+
+                            </div>
+
+
+                            <div class="col-sm-12">
+                                <form style="width: 90%; text-align: center; margin:auto">
+                                    <div class="form-group" style="padding:10px">
+                                        <label for="loanpaymentcalculator-amount" style="width:150px;">Amount
+                                            ($):</label>
+                                        <input id="loanpaymentcalculator-amount" type="number" onchange="Calculate()">
                                     </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        Let's go!
-                                    </button>
+
+                                    <div class="form-group" style="padding:10px">
+                                        <label for="loanpaymentcalculator-rate" style="width:150px">Interest
+                                            Rate:</label>
+                                        <input id="loanpaymentcalculator-rate" type="number" onchange="Calculate()">
+                                    </div>
+
+                                    <div class="form-group" style="padding:10px">
+                                        <label for="loanpaymentcalculator-months" style="width:150px">Loan Term
+                                            (Months):</label>
+                                        <input id="loanpaymentcalculator-months" type="number" onchange="Calculate()">
+                                    </div>
+                                </form>
+                                <div>
+                                    <button class="btn btn-primary" id="exchangerate-btn-submit"
+                                        style="margin-top:30px; width:200px" onclick="Calculate()">Get Monthly
+                                        Payment</button>
                                 </div>
                             </div>
                         </div>
@@ -303,228 +611,52 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Calculator Description Modal 4-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Spending Breakdown</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        Let's go!
-                                    </button>
-                                </div>
+    <!-- Monthly Spending Modal -->
+    <div class="portfolio-modal modal fade" id="monthlyspendingcalculator" tabindex="-1"
+        aria-labelledby="monthlyspendingcalculator" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Budget Calculator</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
                             </div>
+                            <!-- CODE HERE -->
+
+                            <iframe style="height:600px" src="monthlyspending.html"></iframe>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Calculator Description Modal 5-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Calculator Description Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Basic Budget Generator</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Calculator Description Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                    <!-- Calculator Description Modal - Text-->
-                                    <p class="mb-4">Let's go ahead and put a tip here about whatever this particular function will do! It can just be a brief description of what you need to put in and why whatever we're calculating is important. Then, the button below will open the calculator!</p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        Let's go!
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 
 
-        <!-- Calculator Modals -->
-
-        <!-- Credit card total cost calculator modal -->
-        <div class="portfolio-modal modal fade" id="creditcostcalculator" tabindex="-1" aria-labelledby="creditcostcalculator" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container-fluid">
-                            <div class="row justify-content-center">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cost of Interest</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom" style="padding-bottom: 20px">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                <div id="tablearea" class="col-lg-12">
-                                    <table class="table">
-                                        <tr>
-                                            <th>Item Price</th>
-                                            <th>Sales Tax</th>
-                                            <th>Interest Charged</th>
-                                            <th>Months to Pay Off</th>
-                                            <th>TOTAL COST</th>
-                                        </tr>
-                                        <tr>
-                                            <td id="interest-table-itemprice"></td>
-                                            <td id="interest-table-salestax"></td>
-                                            <td id="interest-table-interest"></td>
-                                            <td id="interest-table-months"></td>
-                                            <td id="interest-table-total"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="col-lg-6">
-                                    <form>
-                                        <label for="itemcost">Original Price</label>
-                                        <input class="form-control" id="interest-itemcost" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
-                                        <label for="salestax">Sales Tax %</label>
-                                        <input class="form-control" id="interest-salestax" type="number" min="0.0" max="100.0" step="0.1" placeholder="0.0" />
-                                        <label for="interestrate">Credit Card Interest Rate (APR) %</label>
-                                        <input class="form-control" id="interest-interestrate" type="number" min="0.00" max="100.00" step="0.01" placeholder="0.00" />
-                                        <label for="monthlypayment">Amount paid per month</label>
-                                        <input class="form-control" id="interest-monthlypayment" type="number" min="0.00" max="1000000.00" step="0.01" placeholder="0.00" />
-                                        <br/>
-                                        <button class="btn btn-primary" onclick="updateInterest(250, 100, 0)" type="button">Update!</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Exchange Rate Modal -->
-        <div class="portfolio-modal modal fade" id="exchangeratecalculator" tabindex="-1" aria-labelledby="exchangeratecalculator" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container-fluid">
-                            <div class="row justify-content-center">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Exchange Rate Calculator</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom" style="padding-bottom: 20px">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div> 
-                                    <div>
-                                        <!-- <input type="text" class="form-control" placeholder="Start"/> -->
-                                        <select name="fromcurrency" id="exchangerate-fromCurrency" style="width:20%" onchange="updateButton()"></select>
-                                        <button id="exchangerate-btn-swap" type="button" style="appearance:none; border:none; background-color: inherit;" onclick="swapCurrencies()"><img src="assets/img/swap_arrow.svg" width="40px" style="padding:5px"></button>
-                                        <!-- <input type="text" class="form-control" placeholder="End"/> -->
-                                        <select name="tocurrency" id="exchangerate-toCurrency" style="width:20%" onchange="updateButton()"></select>
-                                    </div> 
-                                    <div>
-                                        <input type="number" id="exchangerate-fromamount" style="width:20%">
-                                        <button id="exchangerate-btn-arrowsubmit" type="button" style="appearance:none; border:none; background-color: inherit;" onclick="getExchangeValue()"><img src="assets/img/right-arrow.svg" width="40px" style="padding:8px; margin-left:5px; margin-right:5px"></button>
-                                        <input type="number" id="exchangerate-toamount" style="width:20%" disabled="true">
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary" id="exchangerate-btn-submit" style="margin-top:30px; width:200px" onclick="getExchangeValue()">Convert!</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Exchange Rate Modal -->
-        <div class="portfolio-modal modal fade" id="loanpaymentcalculator" tabindex="-1" aria-labelledby="loanpaymentcalculator" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container-fluid">
-                            <div class="row justify-content-center">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Monthly Loan Payment Calculator</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom" style="padding-bottom: 20px">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div> 
-
-                                    <div class="col-sm-12" id="loanpaymentcalculator-results">
-
-                                    </div>
+    <!-- TODO remove this for production! -->
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#monthlyspendingcalculator">Modal Test
+        Button</button>
+    <button class="btn btn-primary" onclick="getExchangeValue()">JS Test Button</button>
 
 
-                                   <div class="col-sm-12">
-                                        <form style="width: 90%; text-align: center; margin:auto">
-                                            <div class="form-group" style="padding:10px">
-                                                <label for="loanpaymentcalculator-amount" style="width:150px;">Amount ($):</label>
-                                                <input id="loanpaymentcalculator-amount" type="number" onchange="Calculate()">
-                                            </div>
-                                            
-                                            <div class="form-group" style="padding:10px">
-                                                <label for="loanpaymentcalculator-rate" style="width:150px">Interest Rate:</label>
-                                                <input id="loanpaymentcalculator-rate" type="number" onchange="Calculate()">
-                                            </div>
-                                            
-                                            <div class="form-group" style="padding:10px">
-                                                <label for="loanpaymentcalculator-months" style="width:150px">Loan Term (Months):</label>
-                                                <input id="loanpaymentcalculator-months" type="number" onchange="Calculate()">
-                                            </div>                                          
-                                        </form>
-                                        <div>
-                                            <button class="btn btn-primary" id="exchangerate-btn-submit" style="margin-top:30px; width:200px" onclick="Calculate()">Get Monthly Payment</button>
-                                        </div>
-                                   </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
 
-
-
-        <!-- TODO remove this for production! -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loanpaymentcalculator">Modal Test Button</button>
-        <button class="btn btn-primary" onclick="getExchangeValue()">JS Test Button</button>
-
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
 </html>

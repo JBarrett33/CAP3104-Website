@@ -1,0 +1,374 @@
+<html>
+<header>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>SmartMoney - Home</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/additional.css" rel="stylesheet" />
+    <style>
+        section {
+            color: #fafafa;
+            font-size: 16px;
+            position: relative;
+            height: 120vh;
+            font-weight: 400;
+        }
+
+        .tables::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .rightposition {
+            float: right;
+        }
+
+
+        .toppart {
+            height: 10vh;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .budget_box {
+            position: absolute;
+            width: 350px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            color: #000000;
+        }
+
+        .title {
+            font-size: 25px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .bvalue {
+            font-weight: 300;
+            font-size: 46px;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .bincome {
+            padding: 12px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            border-color: #2c3e50
+        }
+
+        .income_value {
+            letter-spacing: 1px;
+            float: left;
+        }
+
+        .bincome_t {
+            float: left;
+            font-size: 13px;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .bexpenses {
+            padding: 12px;
+            background-color: #ffffff;
+        }
+
+        .r {
+            color: #5b3f3e !important;
+        }
+
+        .r_focus:focus {
+            border: 1px solid #218362 !important;
+        }
+
+        .bexpenses_text {
+            float: left;
+            font-size: 13px;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .expense_value {
+            letter-spacing: 1px;
+            float: left;
+        }
+
+        .addpart {
+            padding: 14px;
+            border-bottom: 1px solid #ffffff;
+            background-color: #ffffff;
+            transform: translate(0%, 70%);
+        }
+
+        .add_box {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .type {
+            width: 55px;
+            border: 1px solid #b1aaaa;
+            height: 44px;
+            font-size: 18px;
+            color: #000000;
+            /*color of plus and minus*/
+            background-color: #ffffff;
+            margin-right: 10px;
+            font-weight: 300;
+            transition: border 0.3s;
+        }
+
+        .description {
+            width: 400px;
+            border: 1px solid #ffffff;
+            background-color: #f0f0f0;
+            color: #000000;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 12px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+
+        .value {
+            width: 100px;
+            border: 1px solid #ffffff;
+            background-color: #f0f0f0;
+            color: #000000;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 12px 15px;
+            margin-right: 10px;
+            border-radius: 5px;
+            transition: border 0.3s;
+        }
+
+        .abutton {
+            font-size: 20px;
+            background: none;
+            border-color: #a6a0a0;
+            color: #2c3e50;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.1;
+            margin-left: 10px;
+        }
+
+        .abutton:active {
+            transform: translateY(2px);
+        }
+
+        .type:focus,
+        .description:focus,
+        .value:focus {
+            outline: none;
+            border: 1px solid #2c3e50;
+        }
+
+        .abutton:focus {
+            outline: none;
+        }
+
+        .item {
+            padding: 13px;
+            border-bottom: 1px solid #ffffff;
+            color: #000000
+        }
+
+        .item:first-child {
+            border-top: 1px solid #e7e7e7;
+        }
+
+        .item:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .item__description {
+            float: left;
+
+        }
+
+        .item_value {
+            float: left;
+            transition: transform 0.3s;
+        }
+
+        .box {
+            width: 1000px;
+            margin: 60px auto;
+        }
+
+        .income {
+            float: left;
+            width: 475px;
+            margin-right: 50px;
+        }
+
+        .expenses {
+            float: left;
+            width: 475px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .ititle {
+            color: #2c3e50;
+        }
+
+        .etitle {
+            color: #1abc9c;
+        }
+
+
+        .income .item_value,
+        .income .item_delete_button {
+            color: #2c3e50;
+        }
+
+        .expenses .item_value,
+        .expenses .item_delete_button {
+            color: #1abc9c;
+        }
+
+        .item_delete {
+            float: left;
+        }
+
+        .item:hover .item_delete_button {
+            display: block;
+        }
+
+        .item:hover .item_value {
+            transform: translateX(-20px);
+        }
+
+        .item_delete_button {
+            font-size: 22px;
+            background: none;
+            border-color: #a6a0a0;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            display: none;
+        }
+
+        .item_delete_button:focus {
+            outline: none;
+        }
+
+        .item_delete_button:active {
+            transform: translateY(2px);
+        }
+
+        .bottompart{
+            margin-top:200px;
+        }
+    </style>
+
+<!-- TODO set up clean printing-->
+    <!-- <script>
+        function doPrint(){
+            var printerContent = document.getElementById("budgetSummary");
+            var printwindow = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            const items = document.getElementsByClassName("item tables");
+            items.forEach(element => {
+                printwindow.document.write(element.innerHTML)
+            });
+            printwindow.document.close();
+            printwindow.focus();
+            printwindow.print();
+            printwindow.close();
+        }
+    
+    </script> -->
+</header>
+
+<body>
+    <section>
+        <div class="toppart">
+            <div class="budget_box">
+                <div class="title">
+                    <span class="month">%Month%</span>'s Monthly Net Income
+                </div>
+
+                <div class="bvalue">2</div>
+
+                <div class="bincome tables">
+                    <div class="bincome_t">Income</div>
+                    <div class="rightposition">
+                        <div class="income_value">1</div>
+                    </div>
+                </div>
+
+                <div class="bexpenses tables">
+                    <div class="bexpenses_text">Expenses</div>
+                    <div class="rightposition tables">
+                        <div class="expense_value">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bottompart">
+            <div class="addpart">
+                <div class="add_box">
+                    <select class="type">
+                        <option value="i" selected>+</option>
+                        <option value="e">-</option>
+                    </select>
+                    <input type="text" class="description" placeholder="Description">
+                    <input type="number" class="value" placeholder="Value">
+                    <button class="abutton"><i class="outline">add</i></button>
+                </div>
+            </div>
+
+            <div id="budgetSummary" class="box tables">
+                <div class="income">
+                    <h2 class="ititle">Income</h2>
+
+                    <div class="ilist">
+                    </div>
+                </div>
+
+
+                <div class="expenses">
+                    <h2 class="etitle">Expenses</h2>
+
+                    <div class="elist">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core theme JS-->
+    <script src="./js/monthlyspending.js"></script>
+</body>
+
+</html>
