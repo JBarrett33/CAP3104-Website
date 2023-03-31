@@ -19,10 +19,13 @@
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/additional.css" rel="stylesheet" />
 
+    <script src="https://www.chartjs.org/samples/2.9.4/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./js/glossary.js"></script>
     <script src="./js/interestCost.js"></script>
     <script src="./js/exchangeRate.js"></script>
     <script src="./js/loanPayment.js"></script>
+    <script src="./js/savingsGrowth.js"></script>
 
     <script>
         // Bind ENTER key to the apporpriate function based on the currently focused element. 
@@ -47,6 +50,10 @@
                         console.log("Converting currency")
                         getExchangeValue();
                         break;
+                    case "savingsgrowth":
+                        console.log("Lookin' at savings")
+                        makeChart(calculateSavings())
+                        break;
                 }
             }
             // Might as well let the ESC key exit the current modal. 
@@ -59,7 +66,7 @@
 </head>
 
 <body id="page-top">
-    
+
     <button class="btn btn-primary contexthelpbutton">CLICK ME</button>
 
     <!-- Navigation-->
@@ -137,7 +144,8 @@
                 </div>
                 <!-- Calculator 2-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal"
+                        data-bs-target="#savingsgrowthcalculator">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white">
@@ -146,9 +154,9 @@
                         </div>
                         <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png" alt="..." />
                     </div>
-                    <p style="text-align: center; padding:5px">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p style="text-align: center; padding:5px">A high-interest savings account is a great way to make
+                        your money work for you. Use our savings growth calculator to compare interest rates, and to
+                        understand the importance of making regular monthly deposits,</p>
                 </div>
                 <!-- Calculator 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -646,9 +654,58 @@
         </div>
     </div>
 
+    <!-- Savngs Growth Modal -->
+    <div class="portfolio-modal modal fade" id="savingsgrowthcalculator" tabindex="-1"
+        aria-labelledby="monthlyspendingcalculator" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Savings Growth
+                                Calculator</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- CODE HERE -->
+
+                            <div class="col-lg-8" id="savingsgrowth-chartareacontainer"></div>
+                            <div class="col-lg-6">
+                                <form>
+                                    <label for="itemcost">Initial Deposit ($)</label>
+                                    <input class="form-control" id="savingsgrowth-initialbalance" type="number"
+                                        min="0.00" max="1000000.00" step="0.01" placeholder="0.00" required />
+                                    <label for="salestax">Monthly Deposits ($)</label>
+                                    <input class="form-control" id="savingsgrowth-monthlydeposit" type="number"
+                                        min="0.0" max="1000000.00" step="0.01" placeholder="0.00" required />
+                                    <label for="interestrate">Interest Rate (APY %)</label>
+                                    <input class="form-control" id="savingsgrowth-interestrate" type="number" min="0.0"
+                                        max="100.00" step="0.01" placeholder="2.45" required />
+                                    <label for="monthlypayment">Number of Months</label>
+                                    <input class="form-control" id="savingsgrowth-durationmonths" type="number" min="0"
+                                        max="1000" placeholder="12" required />
+                                    <br />
+                                    <button class="btn btn-primary" type="button"
+                                        onclick="makeChart(calculateSavings())">Calculate!</button>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- TODO remove this for production! -->
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#monthlyspendingcalculator">Modal Test
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#savingsgrowthcalculator">Modal Test
         Button</button>
     <button class="btn btn-primary" onclick="getExchangeValue()">JS Test Button</button>
 
