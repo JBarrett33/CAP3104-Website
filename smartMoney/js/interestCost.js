@@ -38,7 +38,7 @@ function updateInterest(){
     while (remaining - monthlyPayment > 0){
         interestPaid += remaining * (periodicRate)
         remaining = remaining - monthlyPayment
-        console.log(interestPaid)
+        // console.log(interestPaid)
         months++
         if(months > 1000){
             window.alert("Please enter a higher monthly payment!");
@@ -46,17 +46,70 @@ function updateInterest(){
         }
     };
     interestPaid += remaining * (periodicRate)
+    interestPaid = interestPaid.toFixed(2);
     months++
 
-    totalPaid = priceWithTax + interestPaid;
+    totalPaid = (parseFloat(priceWithTax) + parseFloat(interestPaid))
+    //totalPaid = parseFloat(totalPaid).toFixed(2);
     taxPortion = taxTotal / totalPaid;
     purchasePortion = price / totalPaid;
     interestPortion = interestPaid / totalPaid;
 
-    document.getElementById("interest-table-itemprice").innerHTML = formatAsMoney(price);
-    document.getElementById("interest-table-interest").innerHTML = formatAsMoney(interestPaid)
-    document.getElementById("interest-table-salestax").innerHTML = formatAsMoney(taxTotal)
-    document.getElementById("interest-table-months").innerHTML = months
-    document.getElementById("interest-table-total").innerHTML = "<span style=color:green>" + formatAsMoney(totalPaid) + "</span>"
+    // document.getElementById("interest-table-itemprice").innerHTML = formatAsMoney(price);
+    // document.getElementById("interest-table-interest").innerHTML = formatAsMoney(interestPaid)
+    // document.getElementById("interest-table-salestax").innerHTML = formatAsMoney(taxTotal)
+    // document.getElementById("interest-table-months").innerHTML = months
+    // document.getElementById("interest-table-total").innerHTML = "<span style=color:green>" + formatAsMoney(totalPaid) + "</span>"
+
+    const creditcost_data = {
+        labels: ["Purchasing outright: " + formatAsMoney(totalPaid - interestPaid), "Purchasing with credit: " + formatAsMoney(totalPaid)],
+        datasets: [
+          {
+            label: 'Item Cost',
+            data: [price, price],
+            backgroundColor: 'rgb(75, 192, 192)',
+          },
+          {
+            label: 'Sales Tax',
+            data: [taxTotal, taxTotal],
+            backgroundColor: 'rgb(255, 205, 86)',
+          },
+          {
+            label: 'Credit Interest',
+            data: [0, interestPaid],
+            backgroundColor: 'rgb(255, 99, 132)',
+          },
+        ]
+      };
+
+    const configuration_creditcost = {
+        type: 'bar',
+        data: creditcost_data,
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: 'Cost of Credit Comparison'
+            },
+          },
+          responsive: true,
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true
+            }
+          }
+        }
+      };
+
+    document.getElementById("creditcostcalculator-chartcontainer").innerHTML = "";
+    const c = document.createElement("canvas");
+    c.id = "creditcostcalculator-chart";
+    c.style = "margin-bottom:15px;";
+    document.getElementById("creditcostcalculator-chartcontainer").appendChild(c);
+    const frame_creditcost = document.getElementById("creditcostcalculator-chart");
+    new Chart(frame_creditcost, configuration_creditcost);
    
 }

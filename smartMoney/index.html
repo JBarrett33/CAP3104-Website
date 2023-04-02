@@ -26,6 +26,7 @@
     <script src="./js/exchangeRate.js"></script>
     <script src="./js/loanPayment.js"></script>
     <script src="./js/savingsGrowth.js"></script>
+    <script src="./js/contextHelp.js"></script>
 
     <script>
         // Bind ENTER key to the apporpriate function based on the currently focused element. 
@@ -67,7 +68,7 @@
 
 <body id="page-top">
 
-    <button class="btn btn-primary contexthelpbutton">CLICK ME</button>
+    <button class="btn btn-primary contexthelpbutton" onclick="help_homepage()">Help</button>
 
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
@@ -156,7 +157,7 @@
                     </div>
                     <p style="text-align: center; padding:5px">A high-interest savings account is a great way to make
                         your money work for you. Use our savings growth calculator to compare interest rates, and to
-                        understand the importance of making regular monthly deposits,</p>
+                        understand the importance of making regular monthly deposits.</p>
                 </div>
                 <!-- Calculator 3-->
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -186,10 +187,9 @@
                         </div>
                         <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
                     </div>
-                    <p style="text-align: center; padding:5px">Excepteur sint occaecat cupidatat non proident, sunt in
-                        culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
-                        error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                        illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    <p style="text-align: center; padding:5px">Having a budget is one of the most important and
+                        fundamental concepts in personal finance. Use our monthly spending visualizer to identify where
+                        your money is going, how much is left over, and where you can save!</p>
                 </div>
                 <!-- Calculator 5-->
                 <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
@@ -310,9 +310,9 @@
                 <div class="col-lg-4 mb-5 mb-lg-0">
                     <h4 class="text-uppercase mb-4">Location</h4>
                     <p class="lead mb-0">
-                        2215 John Daniel Drive
+                        4000 Central Florida Blvd
                         <br />
-                        Clark, MO 65243
+                        Orlando, FL 32816
                     </p>
                 </div>
                 <!-- Footer Social Icons-->
@@ -461,6 +461,7 @@
     <!-- Credit card total cost calculator modal -->
     <div class="portfolio-modal modal fade" id="creditcostcalculator" tabindex="-1"
         aria-labelledby="creditcostcalculator" aria-hidden="true">
+        <button class="btn btn-primary contexthelpbutton" onclick="help_creditcost()">Help</button>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
@@ -475,24 +476,7 @@
                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                 <div class="divider-custom-line"></div>
                             </div>
-                            <div id="tablearea" class="col-lg-12">
-                                <table class="table">
-                                    <tr>
-                                        <th>Item Price</th>
-                                        <th>Sales Tax</th>
-                                        <th>Interest Charged</th>
-                                        <th>Months to Pay Off</th>
-                                        <th>TOTAL COST</th>
-                                    </tr>
-                                    <tr>
-                                        <td id="interest-table-itemprice"></td>
-                                        <td id="interest-table-salestax"></td>
-                                        <td id="interest-table-interest"></td>
-                                        <td id="interest-table-months"></td>
-                                        <td id="interest-table-total"></td>
-                                    </tr>
-                                </table>
-                            </div>
+                            <div id="creditcostcalculator-chartcontainer" class="col-lg-8"></div>
                             <div class="col-lg-6">
                                 <form>
                                     <label for="itemcost">Original Price</label>
@@ -522,6 +506,7 @@
     <!-- Exchange Rate Modal -->
     <div class="portfolio-modal modal fade" id="exchangeratecalculator" tabindex="-1"
         aria-labelledby="exchangeratecalculator" aria-hidden="true">
+        <button class="btn btn-primary contexthelpbutton">Help</button>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
@@ -571,6 +556,7 @@
     <!-- Loan Payment Modal -->
     <div class="portfolio-modal modal fade" id="loanpaymentcalculator" tabindex="-1"
         aria-labelledby="loanpaymentcalculator" aria-hidden="true">
+        <button class="btn btn-primary contexthelpbutton" onclick="help_loanpayment()">Help</button>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
@@ -628,6 +614,7 @@
     <!-- Monthly Spending Modal -->
     <div class="portfolio-modal modal fade" id="monthlyspendingcalculator" tabindex="-1"
         aria-labelledby="monthlyspendingcalculator" aria-hidden="true">
+        <button class="btn btn-primary contexthelpbutton">Help</button>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
@@ -657,6 +644,7 @@
     <!-- Savngs Growth Modal -->
     <div class="portfolio-modal modal fade" id="savingsgrowthcalculator" tabindex="-1"
         aria-labelledby="monthlyspendingcalculator" aria-hidden="true">
+        <button class="btn btn-primary contexthelpbutton" onclick="help_savingsgrowth()">Help</button>
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
