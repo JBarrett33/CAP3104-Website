@@ -26,7 +26,7 @@
     <script src="./js/exchangeRate.js"></script>
     <script src="./js/loanPayment.js"></script>
     <script src="./js/savingsGrowth.js"></script>
-    <script src="./js/contextHelp.js"></script>
+    <script src="./js/benjamin.js"></script>
 
     <script>
         // Bind ENTER key to the apporpriate function based on the currently focused element. 
@@ -54,6 +54,10 @@
                     case "savingsgrowth":
                         console.log("Lookin' at savings")
                         makeChart(calculateSavings())
+                        break;
+                    case "ai":
+                        console.log("Talkin' to AI")
+                        getAnswer(document.getElementById('ai-questionArea').value)
                         break;
                 }
             }
@@ -88,7 +92,7 @@
                             href="#about">About</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#glossary">Glossary</a></li>
-                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li> -->
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="" data-bs-toggle="modal" data-bs-target="#benjamin">Ask Benjamin</a></li>
                 </ul>
             </div>
         </div>
@@ -136,7 +140,7 @@
                                 <p>Cost of Interest</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/cost_of_interest.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/cost_of_interest.png"
                             alt="..." />
                     </div>
                 </div>
@@ -150,7 +154,7 @@
                                 <p>Savings Growth</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/savings_growth.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/savings_growth.png"
                             alt="..." />
                     </div>
                 </div>
@@ -163,7 +167,7 @@
                                 <p>Loan Payment Calculator</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/daily_spend_goal.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/daily_spend_goal.png"
                             alt="..." />
                     </div>
                 </div>
@@ -177,7 +181,7 @@
                                 <p>Monthly Budgeting Calculator</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/budgetCalc.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/budgetCalc.png"
                             alt="..." />
                     </div>
                 </div>
@@ -190,7 +194,7 @@
                                 <p>Daily Spending Goal</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/dailySpend.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/dailySpend.png"
                             alt="..." />
                     </div>
                 </div>
@@ -203,7 +207,7 @@
                                 <p>Exchange Rate Calculator</p>
                             </div>
                         </div>
-                        <img class="img-fluid" style="height:300px" src="assets/img/calc_thumbs/exchangeRate.png"
+                        <img class="img-fluid" src="assets/img/calc_thumbs/exchangeRate.png"
                             alt="..." />
                     </div>
                 </div>
@@ -226,16 +230,23 @@
             <!-- About Section Content-->
             <div class="row">
                 <div class="col-lg-4 ms-auto">
-                    <p class="lead">This is where we should put a creative blurb about what this site is and what
-                        services we will provide to our users. Maybe someone else can write this. In the meantime here
-                        is a placeholder! Here at SmartMoney, we aim to address a major problem present in financial
-                        sites all over the internet: <span style="text-decoration:underline">they're not good.</span>
+                    <p class="lead">Welcome to SmartMoney! We hope to provide you with the
+                        knowledge and tools to help you make informed decisions about your money. We believe that
+                        financial education is essential for achieving financial freedom and living a fulfilling life,
+                        and we are dedicated to making this information accessible to everyone. Our
+                        content is designed to be easy to understand and applicable to your everyday life, so you can
+                        start taking control of your finances right away.
                     </p>
                 </div>
                 <div class="col-lg-4 me-auto">
-                    <p class="lead">Sit back and relax because we've cut out the ads, trackers, popups, overcomplicated
-                        financial jargon, and terrible aesthetic decisions to bring you a finance site that is as easy
-                        to look at as it is to use.</p>
+                    <p class="lead"> We offer a variety of
+                        resources, including calculators, a glossary, and other interactive tools
+                        to help you learn about topics such as budgeting, saving, and managing debt. Whether you are
+                        just
+                        starting out on your financial journey or looking to improve your financial situation, we are
+                        here
+                        to help. Thank you for choosing SmartMoney as your go-to resource for personal finance
+                        education!</p>
                 </div>
             </div>
             <!-- About Section Button-->
@@ -312,12 +323,14 @@
                 <div class="col-lg-4">
                     <h4 class="text-uppercase mb-4">Our Mission Statement</h4>
                     <p class="lead mb-0">
-                        Here at SmartMoney, we want to blah blah blah something something something go knights charge
-                        on.
+                        Our mission is to empower individuals with the knowledge and tools they need to make informed
+                        decisions about their personal finances through comprehensive resources and
+                        easy-to-understand content.
                     </p>
                 </div>
             </div>
         </div>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aimodal">AI</button>
     </footer>
 
 
@@ -448,7 +461,8 @@
                             <div class="col-sm-12">
                                 <form style="width: 90%; text-align: center; margin:auto">
                                     <div class="form-group" style="padding:10px">
-                                        <label for="loanpaymentcalculator-amount" style="width:150px;">Amount Borrowed:</label>
+                                        <label for="loanpaymentcalculator-amount" style="width:150px;">Amount
+                                            Borrowed:</label>
                                         <input id="loanpaymentcalculator-amount" type="number" onchange="Calculate()">
                                     </div>
 
@@ -604,6 +618,44 @@
             </div>
         </div>
     </div>
+
+    <!-- AI Assistant Modal -->
+    <div class="portfolio-modal modal fade" id="benjamin" tabindex="-1" aria-labelledby="benjamin" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ask Benjamin</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- CODE HERE -->
+                            <div class="row">
+                                <div id="ai-conversation_area" class="col-sm-12">
+                                    <p class="my-3 ai_message">Hello there! I'm Benjamin: your finance AI friend! How can I help you today?</p>
+                                    <!-- <p style="text-align:right" class="my-3"><span class="user_message">Hey! Nice to meet you!</span></p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5">
+                            <div class="col-sm-10"><input id="ai-questionArea" type="text" class="form-control"
+                                    placeholder="Ask a finance question!" /></div>
+                            <div class="col-sm-1"><button type="button" class="btn btn-primary" onclick="getAnswer(document.getElementById('ai-questionArea').value)">Ask!</button></div>
+                            <div class="col-sm-1"><button type="button" class="btn btn-warning" onclick="resetBenjamin()">Reset</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
 
 
 

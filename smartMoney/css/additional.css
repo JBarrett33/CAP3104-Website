@@ -1,37 +1,23 @@
-.pie {
-  --w: 150px;
-
-  width: var(--w);
-  aspect-ratio: 1;
-  position: relative;
-  display: inline-grid;
-  place-content: center;
-  margin: 5px;
-  font-size: 25px;
-  font-weight: bold;
-  font-family: sans-serif;
+.ai_message {
+  text-align:left;
+  color: white;
+  background-color: #707070;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.pie:before {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  inset: 0;
-  background: conic-gradient(var(--c) calc(var(--p)*1%), #0000 0);
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
-  mask: radial-gradient(farthest-side, #0000 calc(99% - var(--b)), #000 calc(100% - var(--b)));
+.user_message {
+  text-align:left;
+  color: white;
+  background-color: #1982FC;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.contexthelpbutton {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-color: #0C9;
-  color: #FFF;
-  border-radius: 50px;
-  text-align: center;
-  box-shadow: 2px 2px 3px #999;
-
+#ai-conversation_area {
+  background-color: #aeb9cc;
+  margin-top: 20px;
+  border-radius: 20px;
+  height: 600px;
+  overflow-y: auto
 }
