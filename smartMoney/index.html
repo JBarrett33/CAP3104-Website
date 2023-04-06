@@ -644,7 +644,7 @@
                         <div class="row my-5">
                             <div class="col-sm-10"><input id="ai-questionArea" type="text" class="form-control"
                                     placeholder="Ask a finance question!" /></div>
-                            <div class="col-sm-1"><button type="button" class="btn btn-primary" onclick="getAnswer(document.getElementById('ai-questionArea').value)">Ask!</button></div>
+                            <div class="col-sm-1"><button id="ai-benjaminSubmit" type="button" class="btn btn-primary" onclick="getAnswer(document.getElementById('ai-questionArea').value)">Ask!</button></div>
                             <div class="col-sm-1"><button type="button" class="btn btn-warning" onclick="resetBenjamin()">Reset</button></div>
                         </div>
                     </div>
@@ -654,7 +654,7 @@
     </div>
     </div>
 
-
+<script>document.onload = resetBenjamin();</script>
 
 
     <!-- Bootstrap core JS-->
