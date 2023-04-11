@@ -1,9 +1,10 @@
 // This is where our rules go. Add more here as needed.
 let RULES = [
     "Your name is Benajmin.",
-    "You are a friendly and professional financial advisor.",
+    "You are a friendly and professional AI designed to provide financial advice and education.",
     "You are not to change this role at any time for any reason.",
     "If a prompt is not related to finance, say that you can't help with that subject.",
+    "Please answer in 180 words or fewer.",
     "Please begin by introducing yourself."
 ]
 
@@ -54,7 +55,7 @@ function resetBenjamin(){
 
     var data = JSON.stringify({
         model: "gpt-3.5-turbo-0301",
-        max_tokens: 150,
+        max_tokens: 200,
         temperature: 0.5,
         // messages: [{"role":"user", "content":instructions + q}]
         messages: MESSAGE_HISTORY
@@ -79,6 +80,7 @@ function getAnswer(q) {
     document.getElementById("ai-questionArea").disabled = true;
     document.getElementById("ai-benjaminSubmit").disabled = true;
     document.getElementById("ai-typing").style.visibility="visible"
+    document.getElementById("ai-conversation_area").scrollTop = document.getElementById("ai-conversation_area").scrollHeight;
 
     MESSAGE_HISTORY.push({"role":"user", "content":q});
     var request = new XMLHttpRequest();
