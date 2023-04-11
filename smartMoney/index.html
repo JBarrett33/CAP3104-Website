@@ -311,12 +311,13 @@
                 </div>
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Meet Our Team</h4>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!">JB</a>
+                    <h4 class="text-uppercase mb-4 btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#team">
+                        Meet Our Team</h4>
+                    <!-- <a class="btn btn-outline-light btn-social mx-1" href="#!">JB</a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!">TJ</a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!">LRS</a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!">HL</a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!">AU</a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!">AU</a> -->
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
@@ -685,7 +686,78 @@
             </div>
         </div>
     </div>
+
+    <!-- Team Modal -->
+    <div class="portfolio-modal modal fade" id="team" tabindex="-1" aria-labelledby="team" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
+                        aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Meet Our Team</h2>
+                            <!-- Icon Divider-->
+                            <div class="divider-custom" style="padding-bottom: 20px">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <!-- CODE HERE -->
+                            <div class="row my-3" style="margin:auto">
+                                <div class="col-lg-4">
+                                    <div class="card" style="height:200px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Jonah Barrett</h5>
+                                            <p class="card-text">Homepage design<br/>Cost of interest calculator development<br/>Exchange rate calculator development<br/>Benjamin AI implementation<br/>Glossary implementation
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card" style="height:200px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Tahmina Jahan</h5>
+                                            <p class="card-text">Site styling<br/>Loan payment calculator development<br/>Written content creation</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card" style="height:200px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Hunter Lovech</h5>
+                                            <p class="card-text">Webpage development<br/>Development of technology stack <br/>JS development / debugging<br/>Led project administrative tasks</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-3" style="margin:auto; justify-content: center;">
+                                <div class="col-lg-4">
+                                    <div class="card" style="height:200px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lizbeth Soriano</h5>
+                                            <p class="card-text">Creation and management of project timeline<br/>Task delegation<br/>Written content creation<br/>Monthly budget calculator development</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card" style="height:200px">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Antonio Urdaneta</h5>
+                                            <p class="card-text">Led debugging / testing<br/>Prototype video creation<br/>Assisted with fine-tuning of AI<br/>Assisted with creation of AI ruleset<br/>Graphic design</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <script>document.onload = resetBenjamin();</script>
 
