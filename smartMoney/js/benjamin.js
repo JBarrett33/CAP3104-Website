@@ -105,7 +105,7 @@ function getAnswer(q) {
     var data = JSON.stringify({
         model: "gpt-3.5-turbo-0301",
         // model: "gpt-3.5-turbo",
-        max_tokens: 200,
+        max_tokens: 500,
         temperature: 0.5,
         // messages: [{"role":"user", "content":instructions + q}]
         messages: MESSAGE_HISTORY
